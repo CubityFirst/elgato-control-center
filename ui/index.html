@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elgato Lights</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card" id="card">
+    <header>
+      <h1>Key Lights</h1>
+      <div class="actions">
+        <button id="add-toggle" class="icon-btn" title="Add a light by IP address" aria-label="Add by IP">
+          <svg viewBox="0 0 16 16" width="14" height="14"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg>
+        </button>
+        <button id="rescan" class="icon-btn" title="Rescan network" aria-label="Rescan network">
+          <svg viewBox="0 0 16 16" width="14" height="14"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 2v3h-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <form id="add-row" class="add-row" hidden autocomplete="off">
+      <input id="add-ip" type="text" placeholder="192.168.1.50" spellcheck="false">
+      <button type="submit" class="text-btn">Add</button>
+    </form>
+
+    <div id="status" class="status" hidden></div>
+
+    <div id="lights" class="lights"></div>
+
+    <div id="empty" class="empty" hidden>
+      <p>No lights found.</p>
+      <p class="hint">Make sure the light is on the same network, then rescan or add it by IP.</p>
+    </div>
+  </div>
+
+  <template id="light-tpl">
+    <section class="light">
+      <div class="row top">
+        <div class="meta">
+          <div class="name"></div>
+          <div class="sub"><span class="sub-text"></span><button class="remove" title="Forget this light" aria-label="Forget this light">&times;</button></div>
+        </div>
+        <label class="switch" title="Power">
+          <input type="checkbox" class="power">
+          <span class="track"><span class="knob"></span></span>
+        </label>
+      </div>
+      <div class="row ctl">
+        <span class="lbl">Brightness</span>
+        <input type="range" class="bri" min="3" max="100" step="1" aria-label="Brightness">
+        <span class="val bri-val">50%</span>
+      </div>
+      <div class="row ctl">
+        <span class="lbl">Temperature</span>
+        <input type="range" class="temp" min="2900" max="7000" step="50" aria-label="Colour temperature">
+        <span class="val temp-val">4700K</span>
+      </div>
+    </section>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
